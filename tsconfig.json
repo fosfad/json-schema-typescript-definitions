@@ -10,6 +10,10 @@
     "noUnusedParameters": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
-    "lib": ["ES2020"]
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "lib": ["ES2020"],
+    "outDir": "dist"
   }
 }

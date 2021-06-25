@@ -1,0 +1,60 @@
+name: Quality assurance
+
+on: push
+
+jobs:
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@master
+
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v1
+      with:
+        path: ./.npm
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+
+    - name: Setup Node.js
+      uses: actions/setup-node@master
+      with:
+        node-version: '15.x'
+
+    - name: Install npm dependencies
+      run: npm ci --prefer-offline --cache=./.npm
+
+    - name: Lint with ESLint
+      run: npx eslint .
+
+  typescript_compiler:
+    name: TypeScript compiler
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@master
+
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v1
+      with:
+        path: ./.npm
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+
+    - name: Setup Node.js
+      uses: actions/setup-node@master
+      with:
+        node-version: '15.x'
+
+    - name: Install npm dependencies
+      run: npm ci --prefer-offline --cache=./.npm
+
+    - name: Build library
+      run: npx tsc
