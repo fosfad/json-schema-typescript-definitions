@@ -1,4 +1,4 @@
-interface CommonSchema<
+interface CommonJsonSchema<
   SchemaType,
   MappedTypeScriptType,
   LogicSubschema,
@@ -19,19 +19,19 @@ interface CommonSchema<
   writeOnly?: boolean
 }
 
-export interface NullSchema extends CommonSchema<'null', null, NullSchema> {
+export interface NullJsonSchema extends CommonJsonSchema<'null', null, NullJsonSchema> {
 }
 
-export interface BooleanSchema extends CommonSchema<'boolean', boolean, BooleanSchema> {
+export interface BooleanJsonSchema extends CommonJsonSchema<'boolean', boolean, BooleanJsonSchema> {
 }
 
-export interface StringSchema extends CommonSchema<'string', string, StringSchema> {
+export interface StringJsonSchema extends CommonJsonSchema<'string', string, StringJsonSchema> {
   maxLength?: number,
   minLength?: number,
   pattern?: string,
 }
 
-export interface NumberSchema extends CommonSchema<'number', number, NumberSchema> {
+export interface NumberJsonSchema extends CommonJsonSchema<'number', number, NumberJsonSchema> {
   exclusiveMaximum?: number,
   exclusiveMinimum?: number,
   maximum?: number,
@@ -39,7 +39,7 @@ export interface NumberSchema extends CommonSchema<'number', number, NumberSchem
   multipleOf?: number,
 }
 
-export interface IntegerSchema extends CommonSchema<'integer', number, IntegerSchema> {
+export interface IntegerJsonSchema extends CommonJsonSchema<'integer', number, IntegerJsonSchema> {
   exclusiveMaximum?: number,
   exclusiveMinimum?: number,
   maximum?: number,
@@ -47,7 +47,7 @@ export interface IntegerSchema extends CommonSchema<'integer', number, IntegerSc
   multipleOf?: number,
 }
 
-export interface ArraySchema extends CommonSchema<'array', Array<any>, ArraySchema> {
+export interface ArrayJsonSchema extends CommonJsonSchema<'array', Array<any>, ArrayJsonSchema> {
   contains?: JsonSchema,
   items?: JsonSchema,
   maxContains?: number,
@@ -58,7 +58,7 @@ export interface ArraySchema extends CommonSchema<'array', Array<any>, ArraySche
   uniqueItems?: boolean
 }
 
-export interface ObjectSchema extends CommonSchema<'object', Record<string, any>, ObjectSchema> {
+export interface ObjectJsonSchema extends CommonJsonSchema<'object', Record<string, any>, ObjectJsonSchema> {
   additionalProperties?: JsonSchema,
   dependentRequired?: Record<string, Array<string>>,
   maxProperties?: number,
@@ -69,16 +69,16 @@ export interface ObjectSchema extends CommonSchema<'object', Record<string, any>
   required?: Array<string>,
 }
 
-type CommonProperties = keyof CommonSchema<any, any, any>;
+type CommonProperties = keyof CommonJsonSchema<any, any, any>;
 
-export interface AnySchema extends Omit<NullSchema, CommonProperties>,
-  Omit<BooleanSchema, CommonProperties>,
-  Omit<StringSchema, CommonProperties>,
-  Omit<NumberSchema, CommonProperties>,
-  Omit<IntegerSchema, CommonProperties>,
-  Omit<ArraySchema, CommonProperties>,
-  Omit<ObjectSchema, CommonProperties>,
-  CommonSchema<undefined | Array<'string' | 'integer' | 'number' | 'array' | 'object' | 'boolean' | 'null'>, any, JsonSchema> {
+export interface AnyJsonSchema extends Omit<NullJsonSchema, CommonProperties>,
+  Omit<BooleanJsonSchema, CommonProperties>,
+  Omit<StringJsonSchema, CommonProperties>,
+  Omit<NumberJsonSchema, CommonProperties>,
+  Omit<IntegerJsonSchema, CommonProperties>,
+  Omit<ArrayJsonSchema, CommonProperties>,
+  Omit<ObjectJsonSchema, CommonProperties>,
+  CommonJsonSchema<undefined | Array<'string' | 'integer' | 'number' | 'array' | 'object' | 'boolean' | 'null'>, any, JsonSchema> {
 }
 
-export type JsonSchema = NullSchema | BooleanSchema | StringSchema | NumberSchema | IntegerSchema | ArraySchema | ObjectSchema | AnySchema;
+export type JsonSchema = NullJsonSchema | BooleanJsonSchema | StringJsonSchema | NumberJsonSchema | IntegerJsonSchema | ArrayJsonSchema | ObjectJsonSchema | AnyJsonSchema;

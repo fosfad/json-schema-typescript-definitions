@@ -1,3 +1,3 @@
 export {
-  JsonSchema, AnySchema, ObjectSchema, ArraySchema, IntegerSchema, NumberSchema, StringSchema, BooleanSchema, NullSchema,
+  JsonSchema, AnyJsonSchema, ObjectJsonSchema, ArrayJsonSchema, IntegerJsonSchema, NumberJsonSchema, StringJsonSchema, BooleanJsonSchema, NullJsonSchema,
 } from './jsonSchema';
