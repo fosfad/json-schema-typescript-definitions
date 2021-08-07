@@ -1,3 +1,11 @@
+export interface Reference {
+  $ref: string,
+}
+
+export function isReference(schema: any): schema is Reference {
+  return typeof schema.$ref === 'string';
+}
+
 export interface NullJsonSchema {
   allOf?: Array<NullJsonSchema>,
   anyOf?: Array<NullJsonSchema>,
@@ -326,7 +334,8 @@ export interface AnyJsonSchema {
 }
 
 export function isAnyJsonSchema(schema: any): schema is AnyJsonSchema {
-  return !isNullJsonSchema(schema)
+  return !isReference(schema)
+    && !isNullJsonSchema(schema)
     && !isBooleanJsonSchema(schema)
     && !isStringJsonSchema(schema)
     && !isNumberJsonSchema(schema)
@@ -335,4 +344,4 @@ export function isAnyJsonSchema(schema: any): schema is AnyJsonSchema {
     && !isObjectJsonSchema(schema);
 }
 
-export type JsonSchema = NullJsonSchema | BooleanJsonSchema | StringJsonSchema | NumberJsonSchema | IntegerJsonSchema | ArrayJsonSchema | ObjectJsonSchema | AnyJsonSchema;
+export type JsonSchema = Reference | NullJsonSchema | BooleanJsonSchema | StringJsonSchema | NumberJsonSchema | IntegerJsonSchema | ArrayJsonSchema | ObjectJsonSchema | AnyJsonSchema;
