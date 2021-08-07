@@ -286,8 +286,8 @@ export function isObjectJsonSchema(schema: any): schema is ObjectJsonSchema {
 
 export interface AnyJsonSchema {
   additionalProperties?: never,
-  allOf?: never,
-  anyOf?: never,
+  allOf?: Array<JsonSchema>,
+  anyOf?: Array<JsonSchema>,
   const?: any,
   contains?: never,
   default?: any,
@@ -310,8 +310,8 @@ export interface AnyJsonSchema {
   minProperties?: never,
   minimum?: never,
   multipleOf?: never,
-  not?: never,
-  oneOf?: never,
+  not?: JsonSchema,
+  oneOf?: Array<JsonSchema>,
   pattern?: never,
   patternProperties?: never,
   prefixItems?: never,
