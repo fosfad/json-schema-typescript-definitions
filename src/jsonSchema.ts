@@ -61,7 +61,7 @@ export interface StringJsonSchema {
   anyOf?: Array<StringJsonSchema>,
   const?: string,
   default?: string,
-  deprecated?: string,
+  deprecated?: boolean,
   description?: string,
   enum?: Array<string>,
   examples?: Array<string>,
