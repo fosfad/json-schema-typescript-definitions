@@ -1,14 +1,8 @@
 {
-  "env": {
-    "es2020": true,
-    "node": true
-  },
-  "extends": [
-    "airbnb-typescript/base"
-  ],
+  "root": true,
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json"
+  "env": {
+    "node": true
   },
   "plugins": [
     "@typescript-eslint",
@@ -16,33 +10,17 @@
     "sort-keys-fix",
     "unused-imports"
   ],
-  "root": true,
-  "overrides": [
-    {
-      "files": "docs/api/compiler.ts",
-      "rules": {
-        "no-console": "off"
-      }
-    }
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:typescript-sort-keys/recommended"
   ],
   "rules": {
-    "@typescript-eslint/no-use-before-define": "off",
-    "guard-for-in": "off",
-    "import/no-default-export": "error",
-    "import/order": ["warn", {"alphabetize": {"order": "asc", "caseInsensitive": true}}],
-    "import/prefer-default-export": "off",
-    "max-classes-per-file": "off",
-    "max-len": "off",
-    "newline-after-var": "warn",
-    "newline-before-return": "warn",
-    "no-console": "warn",
-    "no-multiple-empty-lines": ["warn", {"max": 1, "maxBOF": 0, "maxEOF": 0}],
-    "no-param-reassign": "off",
-    "no-restricted-syntax": "off",
-    "padding-line-between-statements": ["warn", {"blankLine": "never", "prev": "import", "next": "import"}],
-    "sort-keys-fix/sort-keys-fix": ["warn", "asc", {"caseSensitive": true, "natural": false}],
-    "typescript-sort-keys/interface": "warn",
-    "unused-imports/no-unused-imports-ts": "warn",
-    "unused-imports/no-unused-vars-ts": "warn"
+    "object-curly-spacing": ["warn", "always"],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-vars": "warn"
   }
 }
