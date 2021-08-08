@@ -6,9 +6,13 @@ export function isReference(schema: any): schema is Reference {
   return typeof schema.$ref === 'string';
 }
 
-export interface JsonSchema {
+export interface JsonSchema<T = any> {
+  const?: T,
+  default?: T,
   deprecated?: boolean,
   description?: string,
+  enum?: Array<T>,
+  examples?: Array<T>,
   readOnly?: boolean,
   title?: string,
   writeOnly?: boolean
@@ -26,10 +30,6 @@ export function isComposedJsonSchema(schema: any): schema is ComposedJsonSchema 
 }
 
 export interface NullJsonSchema extends JsonSchema, ComposedJsonSchema<NullJsonSchema> {
-  const?: null,
-  default?: null,
-  enum?: Array<null>,
-  examples?: Array<null>,
   type?: 'null' | Array<'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object'>,
 }
 
@@ -45,11 +45,7 @@ export function isNullJsonSchema(schema: any): schema is NullJsonSchema {
   return false;
 }
 
-export interface BooleanJsonSchema extends JsonSchema, ComposedJsonSchema<BooleanJsonSchema> {
-  const?: boolean,
-  default?: boolean,
-  enum?: Array<boolean>,
-  examples?: Array<boolean>,
+export interface BooleanJsonSchema extends JsonSchema<boolean>, ComposedJsonSchema<BooleanJsonSchema> {
   type?: 'boolean' | Array<'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object'>,
 }
 
@@ -65,11 +61,7 @@ export function isBooleanJsonSchema(schema: any): schema is BooleanJsonSchema {
   return false;
 }
 
-export interface StringJsonSchema extends JsonSchema, ComposedJsonSchema<StringJsonSchema> {
-  const?: string,
-  default?: string,
-  enum?: Array<string>,
-  examples?: Array<string>,
+export interface StringJsonSchema extends JsonSchema<string>, ComposedJsonSchema<StringJsonSchema> {
   maxLength?: number,
   minLength?: number,
   pattern?: string,
@@ -96,11 +88,7 @@ export function isStringJsonSchema(schema: any): schema is StringJsonSchema {
   return false;
 }
 
-export interface NumberJsonSchema extends JsonSchema, ComposedJsonSchema<NumberJsonSchema> {
-  const?: number,
-  default?: number,
-  enum?: Array<number>,
-  examples?: Array<number>,
+export interface NumberJsonSchema extends JsonSchema<number>, ComposedJsonSchema<NumberJsonSchema> {
   exclusiveMaximum?: number,
   exclusiveMinimum?: number,
   maximum?: number,
@@ -131,11 +119,7 @@ export function isNumberJsonSchema(schema: any): schema is NumberJsonSchema {
   return false;
 }
 
-export interface IntegerJsonSchema extends JsonSchema, ComposedJsonSchema<IntegerJsonSchema> {
-  const?: number,
-  default?: number,
-  enum?: Array<number>,
-  examples?: Array<number>,
+export interface IntegerJsonSchema extends JsonSchema<number>, ComposedJsonSchema<IntegerJsonSchema> {
   exclusiveMaximum?: number,
   exclusiveMinimum?: number,
   maximum?: number,
@@ -166,12 +150,8 @@ export function isIntegerJsonSchema(schema: any): schema is IntegerJsonSchema {
   return false;
 }
 
-export interface ArrayJsonSchema extends JsonSchema, ComposedJsonSchema<ArrayJsonSchema> {
-  const?: Array<any>,
+export interface ArrayJsonSchema extends JsonSchema<Array<any>>, ComposedJsonSchema<ArrayJsonSchema> {
   contains?: JsonSchema,
-  default?: Array<any>,
-  enum?: Array<Array<any>>,
-  examples?: Array<Array<any>>,
   items?: JsonSchema,
   maxContains?: number,
   maxItems?: number,
@@ -207,13 +187,9 @@ export function isArrayJsonSchema(schema: any): schema is ArrayJsonSchema {
   return false;
 }
 
-export interface ObjectJsonSchema extends JsonSchema, ComposedJsonSchema<ObjectJsonSchema> {
+export interface ObjectJsonSchema extends JsonSchema<Record<string, any>>, ComposedJsonSchema<ObjectJsonSchema> {
   additionalProperties?: JsonSchema,
-  const?: Record<string, any>,
-  default?: Record<string, any>,
   dependentRequired?: Record<string, Array<string>>,
-  enum?: Array<Record<string, any>>,
-  examples?: Array<Record<string, any>>,
   maxProperties?: number,
   minProperties?: number,
   patternProperties?: { [propertyNameRegex: string]: JsonSchema },
@@ -250,12 +226,8 @@ export function isObjectJsonSchema(schema: any): schema is ObjectJsonSchema {
 
 export interface AnyJsonSchema extends JsonSchema, ComposedJsonSchema {
   additionalProperties?: never,
-  const?: any,
   contains?: never,
-  default?: any,
   dependentRequired?: never,
-  enum?: Array<any>,
-  examples?: Array<any>,
   exclusiveMaximum?: never,
   exclusiveMinimum?: never,
   items?: never,
