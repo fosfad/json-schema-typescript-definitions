@@ -6,21 +6,24 @@ export function isReference(schema: any): schema is Reference {
   return typeof schema.$ref === 'string';
 }
 
-export interface NullJsonSchema {
+export interface JsonSchema {
+  deprecated?: boolean,
+  description?: string,
+  readOnly?: boolean,
+  title?: string,
+  writeOnly?: boolean
+}
+
+export interface NullJsonSchema extends JsonSchema {
   allOf?: Array<NullJsonSchema>,
   anyOf?: Array<NullJsonSchema>,
   const?: null,
   default?: null,
-  deprecated?: boolean,
-  description?: string,
   enum?: Array<null>,
   examples?: Array<null>,
   not?: NullJsonSchema,
   oneOf?: Array<NullJsonSchema>,
-  readOnly?: boolean,
-  title?: string,
   type?: 'null' | Array<'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object'>,
-  writeOnly?: boolean
 }
 
 export function isNullJsonSchema(schema: any): schema is NullJsonSchema {
@@ -35,21 +38,16 @@ export function isNullJsonSchema(schema: any): schema is NullJsonSchema {
   return false;
 }
 
-export interface BooleanJsonSchema {
+export interface BooleanJsonSchema extends JsonSchema {
   allOf?: Array<BooleanJsonSchema>,
   anyOf?: Array<BooleanJsonSchema>,
   const?: boolean,
   default?: boolean,
-  deprecated?: boolean,
-  description?: string,
   enum?: Array<boolean>,
   examples?: Array<boolean>,
   not?: BooleanJsonSchema,
   oneOf?: Array<BooleanJsonSchema>,
-  readOnly?: boolean,
-  title?: string,
   type?: 'boolean' | Array<'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object'>,
-  writeOnly?: boolean
 }
 
 export function isBooleanJsonSchema(schema: any): schema is BooleanJsonSchema {
@@ -64,13 +62,11 @@ export function isBooleanJsonSchema(schema: any): schema is BooleanJsonSchema {
   return false;
 }
 
-export interface StringJsonSchema {
+export interface StringJsonSchema extends JsonSchema {
   allOf?: Array<StringJsonSchema>,
   anyOf?: Array<StringJsonSchema>,
   const?: string,
   default?: string,
-  deprecated?: boolean,
-  description?: string,
   enum?: Array<string>,
   examples?: Array<string>,
   maxLength?: number,
@@ -78,10 +74,7 @@ export interface StringJsonSchema {
   not?: StringJsonSchema,
   oneOf?: Array<StringJsonSchema>,
   pattern?: string,
-  readOnly?: boolean,
-  title?: string,
   type?: 'string' | Array<'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object'>,
-  writeOnly?: boolean
 }
 
 export function isStringJsonSchema(schema: any): schema is StringJsonSchema {
@@ -104,13 +97,11 @@ export function isStringJsonSchema(schema: any): schema is StringJsonSchema {
   return false;
 }
 
-export interface NumberJsonSchema {
+export interface NumberJsonSchema extends JsonSchema {
   allOf?: Array<NumberJsonSchema>,
   anyOf?: Array<NumberJsonSchema>,
   const?: number,
   default?: number,
-  deprecated?: boolean,
-  description?: string,
   enum?: Array<number>,
   examples?: Array<number>,
   exclusiveMaximum?: number,
@@ -120,10 +111,7 @@ export interface NumberJsonSchema {
   multipleOf?: number,
   not?: NumberJsonSchema,
   oneOf?: Array<NumberJsonSchema>,
-  readOnly?: boolean,
-  title?: string,
   type?: 'number' | Array<'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object'>,
-  writeOnly?: boolean
 }
 
 export function isNumberJsonSchema(schema: any): schema is NumberJsonSchema {
@@ -148,13 +136,11 @@ export function isNumberJsonSchema(schema: any): schema is NumberJsonSchema {
   return false;
 }
 
-export interface IntegerJsonSchema {
+export interface IntegerJsonSchema extends JsonSchema {
   allOf?: Array<IntegerJsonSchema>,
   anyOf?: Array<IntegerJsonSchema>,
   const?: number,
   default?: number,
-  deprecated?: boolean,
-  description?: string,
   enum?: Array<number>,
   examples?: Array<number>,
   exclusiveMaximum?: number,
@@ -164,10 +150,7 @@ export interface IntegerJsonSchema {
   multipleOf?: number,
   not?: IntegerJsonSchema,
   oneOf?: Array<IntegerJsonSchema>,
-  readOnly?: boolean,
-  title?: string,
   type?: 'integer' | Array<'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object'>,
-  writeOnly?: boolean
 }
 
 export function isIntegerJsonSchema(schema: any): schema is IntegerJsonSchema {
@@ -192,14 +175,12 @@ export function isIntegerJsonSchema(schema: any): schema is IntegerJsonSchema {
   return false;
 }
 
-export interface ArrayJsonSchema {
+export interface ArrayJsonSchema extends JsonSchema {
   allOf?: Array<ArrayJsonSchema>,
   anyOf?: Array<ArrayJsonSchema>,
   const?: Array<any>,
   contains?: JsonSchema,
   default?: Array<any>,
-  deprecated?: boolean,
-  description?: string,
   enum?: Array<Array<any>>,
   examples?: Array<Array<any>>,
   items?: JsonSchema,
@@ -210,11 +191,8 @@ export interface ArrayJsonSchema {
   not?: ArrayJsonSchema,
   oneOf?: Array<ArrayJsonSchema>,
   prefixItems?: Array<JsonSchema>,
-  readOnly?: boolean,
-  title?: string,
   type?: 'array' | Array<'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object'>,
   uniqueItems?: boolean,
-  writeOnly?: boolean
 }
 
 export function isArrayJsonSchema(schema: any): schema is ArrayJsonSchema {
@@ -242,15 +220,13 @@ export function isArrayJsonSchema(schema: any): schema is ArrayJsonSchema {
   return false;
 }
 
-export interface ObjectJsonSchema {
+export interface ObjectJsonSchema extends JsonSchema {
   additionalProperties?: JsonSchema,
   allOf?: Array<ObjectJsonSchema>,
   anyOf?: Array<ObjectJsonSchema>,
   const?: Record<string, any>,
   default?: Record<string, any>,
   dependentRequired?: Record<string, Array<string>>,
-  deprecated?: boolean,
-  description?: string,
   enum?: Array<Record<string, any>>,
   examples?: Array<Record<string, any>>,
   maxProperties?: number,
@@ -260,9 +236,7 @@ export interface ObjectJsonSchema {
   patternProperties?: { [propertyNameRegex: string]: JsonSchema },
   properties?: { [propertyName: string]: JsonSchema },
   propertyNames?: JsonSchema,
-  readOnly?: boolean,
   required?: Array<string>,
-  title?: string,
   type?: 'object' | Array<'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object'>,
   writeOnly?: boolean
 }
@@ -292,7 +266,7 @@ export function isObjectJsonSchema(schema: any): schema is ObjectJsonSchema {
   return false;
 }
 
-export interface AnyJsonSchema {
+export interface AnyJsonSchema extends JsonSchema {
   additionalProperties?: never,
   allOf?: Array<JsonSchema>,
   anyOf?: Array<JsonSchema>,
@@ -300,8 +274,6 @@ export interface AnyJsonSchema {
   contains?: never,
   default?: any,
   dependentRequired?: never,
-  deprecated?: boolean,
-  description?: string,
   enum?: Array<any>,
   examples?: Array<any>,
   exclusiveMaximum?: never,
@@ -325,9 +297,7 @@ export interface AnyJsonSchema {
   prefixItems?: never,
   properties?: never,
   propertyNames?: never,
-  readOnly?: boolean,
   required?: never,
-  title?: string,
   type?: never,
   uniqueItems?: never,
   writeOnly?: boolean
@@ -343,5 +313,3 @@ export function isAnyJsonSchema(schema: any): schema is AnyJsonSchema {
     && !isArrayJsonSchema(schema)
     && !isObjectJsonSchema(schema);
 }
-
-export type JsonSchema = Reference | NullJsonSchema | BooleanJsonSchema | StringJsonSchema | NumberJsonSchema | IntegerJsonSchema | ArrayJsonSchema | ObjectJsonSchema | AnyJsonSchema;
