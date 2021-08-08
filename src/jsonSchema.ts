@@ -19,7 +19,7 @@ export interface NullJsonSchema {
   oneOf?: Array<NullJsonSchema>,
   readOnly?: boolean,
   title?: string,
-  type?: 'null',
+  type?: 'null' | Array<'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object'>,
   writeOnly?: boolean
 }
 
@@ -48,7 +48,7 @@ export interface BooleanJsonSchema {
   oneOf?: Array<BooleanJsonSchema>,
   readOnly?: boolean,
   title?: string,
-  type?: 'boolean',
+  type?: 'boolean' | Array<'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object'>,
   writeOnly?: boolean
 }
 
