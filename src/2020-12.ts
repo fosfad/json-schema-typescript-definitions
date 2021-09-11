@@ -24,14 +24,6 @@ type ConditionalSubschemasKeywords = {
   then?: JsonSchema;
 };
 
-type JsonSchemaType = 'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object';
-
-type AnyValidationKeywords = {
-  const?: any;
-  enum?: Array<any>;
-  type?: JsonSchemaType | Array<JsonSchemaType>;
-};
-
 type MetaDataAnnotationKeywords = {
   default?: any;
   deprecated?: boolean;
@@ -40,6 +32,18 @@ type MetaDataAnnotationKeywords = {
   readOnly?: boolean;
   title?: string;
   writeOnly?: boolean;
+};
+
+type FormatKeywords = {
+  format?: string;
+};
+
+type JsonSchemaType = 'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object';
+
+type CommonValidationKeywords = {
+  const?: any;
+  enum?: Array<any>;
+  type?: JsonSchemaType | Array<JsonSchemaType>;
 };
 
 type StringValidationKeywords = {
@@ -90,8 +94,9 @@ export type JsonSchema = CoreKeywords &
   LogicSubschemasKeywords &
   ConditionalSubschemasKeywords &
   JsonSchemaType &
-  AnyValidationKeywords &
+  CommonValidationKeywords &
   MetaDataAnnotationKeywords &
+  FormatKeywords &
   StringValidationKeywords &
   NumericValidationKeywords &
   ArrayValidationKeywords &
