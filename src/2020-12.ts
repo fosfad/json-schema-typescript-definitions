@@ -93,7 +93,6 @@ type UnevaluatedLocationsKeywords = {
 export type JsonSchema = CoreKeywords &
   LogicSubschemasKeywords &
   ConditionalSubschemasKeywords &
-  JsonSchemaType &
   CommonValidationKeywords &
   MetaDataAnnotationKeywords &
   FormatKeywords &
