@@ -75,7 +75,7 @@ type ObjectValidationKeywords = {
   dependentRequired?: Record<string, Array<string>>;
   maxProperties?: number;
   minProperties?: number;
-  required: string[];
+  required?: string[];
 };
 
 type ObjectSubschemaKeywords = {
