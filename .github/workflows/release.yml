@@ -32,7 +32,7 @@ jobs:
         run: npm ci --prefer-offline --cache=./.npm
 
       - name: Build library
-        run: npx tsc
+        run: npx tsc --outDir .
 
       - name: Set version in package.json
         run: npm --no-git-tag-version version ${{ github.event.release.tag_name }}

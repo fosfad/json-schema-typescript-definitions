@@ -3,7 +3,7 @@
   "description": "Types and interfaces for writing valid JSON schema in TypeScript.",
   "repository": "github:fosfad/json-schema-typescript-definitions",
   "files": [
-    "dist"
+    "2020-12.d.ts"
   ],
   "author": {
     "email": "petr@flaks.dev",
