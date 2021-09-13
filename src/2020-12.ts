@@ -103,6 +103,6 @@ export type JsonSchemaObject = CoreKeywords &
   UnevaluatedLocationsKeywords &
   ObjectSubschemaKeywords;
 
-type JsonSchemaBoolean = boolean;
+export type JsonSchemaBoolean = boolean;
 
 export type JsonSchema = JsonSchemaBoolean | JsonSchemaObject;
