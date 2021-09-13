@@ -3,7 +3,10 @@
   "description": "Types and interfaces for writing valid JSON schema in TypeScript.",
   "repository": "github:fosfad/json-schema-typescript-definitions",
   "files": [
-    "2020-12.d.ts"
+    "2020-12.d.ts",
+    "2020-12.d.ts.map",
+    "2020-12.js",
+    "2020-12.js.map"
   ],
   "author": {
     "email": "petr@flaks.dev",
@@ -14,11 +17,6 @@
     "url": "https://github.com/fosfad/json-schema-typescript-definitions/issues"
   },
   "homepage": "https://github.com/fosfad/json-schema-typescript-definitions",
-  "exports": {
-    "./2020-12": {
-      "import": "./dist/2020-12.d.ts"
-    }
-  },
   "devDependencies": {
     "@types/node": "15.12.4",
     "@typescript-eslint/eslint-plugin": "4.28.0",
