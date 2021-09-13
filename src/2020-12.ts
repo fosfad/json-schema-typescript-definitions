@@ -90,17 +90,19 @@ type UnevaluatedLocationsKeywords = {
   unevaluatedProperties?: JsonSchema;
 };
 
-export type JsonSchema =
-  | boolean
-  | (CoreKeywords &
-      LogicSubschemasKeywords &
-      ConditionalSubschemasKeywords &
-      CommonValidationKeywords &
-      MetaDataAnnotationKeywords &
-      FormatKeywords &
-      StringValidationKeywords &
-      NumericValidationKeywords &
-      ArrayValidationKeywords &
-      ObjectValidationKeywords &
-      UnevaluatedLocationsKeywords &
-      ObjectSubschemaKeywords);
+export type JsonSchemaObject = CoreKeywords &
+  LogicSubschemasKeywords &
+  ConditionalSubschemasKeywords &
+  CommonValidationKeywords &
+  MetaDataAnnotationKeywords &
+  FormatKeywords &
+  StringValidationKeywords &
+  NumericValidationKeywords &
+  ArrayValidationKeywords &
+  ObjectValidationKeywords &
+  UnevaluatedLocationsKeywords &
+  ObjectSubschemaKeywords;
+
+type JsonSchemaBoolean = boolean;
+
+export type JsonSchema = JsonSchemaBoolean | JsonSchemaObject;
