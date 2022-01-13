@@ -1,3 +1,5 @@
+export const dialectIdentifier = 'https://json-schema.org/draft/2020-12/schema';
+
 type CoreKeywords = {
   $anchor?: string;
   $comment?: string;
@@ -6,7 +8,7 @@ type CoreKeywords = {
   $dynamicRef?: string;
   $id?: string;
   $ref?: string;
-  $schema?: 'https://json-schema.org/draft/2020-12/schema';
+  $schema?: typeof dialectIdentifier;
   $vocabulary?: { [uri: string]: boolean };
 };
 
