@@ -6,7 +6,7 @@ type CoreKeywords = {
   $dynamicRef?: string;
   $id?: string;
   $ref?: string;
-  $schema?: string;
+  $schema?: 'https://json-schema.org/draft/2020-12/schema';
   $vocabulary?: { [uri: string]: boolean };
 };
 
