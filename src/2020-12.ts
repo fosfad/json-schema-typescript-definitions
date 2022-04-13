@@ -1,95 +1,95 @@
 export const dialectIdentifier = 'https://json-schema.org/draft/2020-12/schema';
 
 type CoreKeywords = {
-  $anchor?: string;
-  $comment?: string;
-  $defs?: { [key: string]: JsonSchema };
-  $dynamicAnchor?: string;
-  $dynamicRef?: string;
-  $id?: string;
-  $ref?: string;
-  $schema?: typeof dialectIdentifier;
-  $vocabulary?: { [uri: string]: boolean };
+  $anchor?: undefined | string;
+  $comment?: undefined | string;
+  $defs?: undefined | { [key: string]: JsonSchema };
+  $dynamicAnchor?: undefined | string;
+  $dynamicRef?: undefined | string;
+  $id?: undefined | string;
+  $ref?: undefined | string;
+  $schema?: undefined | typeof dialectIdentifier;
+  $vocabulary?: undefined | { [uri: string]: boolean };
 };
 
 type LogicSubschemasKeywords = {
-  allOf?: Array<JsonSchema>;
-  anyOf?: Array<JsonSchema>;
-  not?: JsonSchema;
-  oneOf?: Array<JsonSchema>;
+  allOf?: undefined | Array<JsonSchema>;
+  anyOf?: undefined | Array<JsonSchema>;
+  not?: undefined | JsonSchema;
+  oneOf?: undefined | Array<JsonSchema>;
 };
 
 type ConditionalSubschemasKeywords = {
-  dependentSchemas?: { [key: string]: JsonSchema };
-  else?: JsonSchema;
-  if?: JsonSchema;
-  then?: JsonSchema;
+  dependentSchemas?: undefined | { [key: string]: JsonSchema };
+  else?: undefined | JsonSchema;
+  if?: undefined | JsonSchema;
+  then?: undefined | JsonSchema;
 };
 
 type MetaDataAnnotationKeywords = {
-  default?: any;
-  deprecated?: boolean;
-  description?: string;
-  examples?: Array<any>;
-  readOnly?: boolean;
-  title?: string;
-  writeOnly?: boolean;
+  default?: undefined | any;
+  deprecated?: undefined | boolean;
+  description?: undefined | string;
+  examples?: undefined | Array<any>;
+  readOnly?: undefined | boolean;
+  title?: undefined | string;
+  writeOnly?: undefined | boolean;
 };
 
 type FormatKeywords = {
-  format?: string;
+  format?: undefined | string;
 };
 
 type JsonSchemaType = 'null' | 'boolean' | 'string' | 'integer' | 'number' | 'array' | 'object';
 
 type CommonValidationKeywords = {
-  const?: any;
-  enum?: Array<any>;
-  type?: JsonSchemaType | Array<JsonSchemaType>;
+  const?: undefined | any;
+  enum?: undefined | Array<any>;
+  type?: undefined | JsonSchemaType | Array<JsonSchemaType>;
 };
 
 type StringValidationKeywords = {
-  maxLength?: number;
-  minLength?: number;
-  pattern?: string;
+  maxLength?: undefined | number;
+  minLength?: undefined | number;
+  pattern?: undefined | string;
 };
 
 type NumericValidationKeywords = {
-  exclusiveMaximum?: number;
-  exclusiveMinimum?: number;
-  maximum?: number;
-  minimum?: number;
-  multipleOf?: number;
+  exclusiveMaximum?: undefined | number;
+  exclusiveMinimum?: undefined | number;
+  maximum?: undefined | number;
+  minimum?: undefined | number;
+  multipleOf?: undefined | number;
 };
 
 type ArrayValidationKeywords = {
-  contains?: JsonSchema;
-  items?: JsonSchema;
-  maxContains?: number;
-  maxItems?: number;
-  minContains?: number;
-  minItems?: number;
-  prefixItems?: Array<JsonSchema>;
-  uniqueItems?: boolean;
+  contains?: undefined | JsonSchema;
+  items?: undefined | JsonSchema;
+  maxContains?: undefined | number;
+  maxItems?: undefined | number;
+  minContains?: undefined | number;
+  minItems?: undefined | number;
+  prefixItems?: undefined | Array<JsonSchema>;
+  uniqueItems?: undefined | boolean;
 };
 
 type ObjectValidationKeywords = {
-  dependentRequired?: Record<string, Array<string>>;
-  maxProperties?: number;
-  minProperties?: number;
-  required?: string[];
+  dependentRequired?: undefined | Record<string, Array<string>>;
+  maxProperties?: undefined | number;
+  minProperties?: undefined | number;
+  required?: undefined | string[];
 };
 
 type ObjectSubschemaKeywords = {
-  additionalProperties?: JsonSchema;
-  patternProperties?: { [propertyNameRegex: string]: JsonSchema };
-  properties?: { [propertyName: string]: JsonSchema };
-  propertyNames?: JsonSchema;
+  additionalProperties?: undefined | JsonSchema;
+  patternProperties?: undefined | { [propertyNameRegex: string]: JsonSchema };
+  properties?: undefined | { [propertyName: string]: JsonSchema };
+  propertyNames?: undefined | JsonSchema;
 };
 
 type UnevaluatedLocationsKeywords = {
-  unevaluatedItems?: JsonSchema;
-  unevaluatedProperties?: JsonSchema;
+  unevaluatedItems?: undefined | JsonSchema;
+  unevaluatedProperties?: undefined | JsonSchema;
 };
 
 export type JsonSchemaObject = CoreKeywords &
